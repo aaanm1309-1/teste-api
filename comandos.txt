@@ -1,0 +1,14 @@
+
+mvn clean package
+
+aws lambda create-function --function-name Funcao01 --zip-file fileb://LambdaApiGatewayP01-1.0.jar
+--handler service.lambda.Funcao01::handleRequest --runtime java11
+--role arn:aws:iam::620769944424:role/lambda-role
+
+
+aws lambda update-function-code --function-name Funcao02 --zip-file fileb://target/LambdaApiGatewayP01-1.0.jar
+
+
+aws lambda invoke --function-name Funcao02 --invocation-type RequestResponse tmp/resposta.txt
+
+https://i3udsc8xx4.execute-api.us-east-2.amazonaws.com/Negativacao
